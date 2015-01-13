@@ -919,7 +919,7 @@ class JoveCenterViewCommand(JoveTextCommand):
             view.show_at_center(point)
 
 class JoveSetMarkCommand(JoveTextCommand):
-    def run_cmd(self, jove):
+    def run_cmd(self, jove, **kwargs):
         state = jove.state
         if state.argument_supplied:
             pos = state.mark_ring.pop()
@@ -933,7 +933,7 @@ class JoveSetMarkCommand(JoveTextCommand):
             jove.toggle_active_mark_mode()
         else:
             # set the mark
-            state.active_mark = False
+            state.active_mark = kwargs.get('active_mark', False)
             jove.set_mark()
 
 class JoveSwapPointAndMarkCommand(JoveTextCommand):
